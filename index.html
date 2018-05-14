@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="MusicWeather is a service that gives a suggest playlist based on the weather">
+    <title>MusicWeather</title>
+    
+</head>
+
+<body>
+    <div class="row">
+        <header role="banner" class="col col-full">
+            <a class="header__link">
+                <h2>What's the weather like outside?</h2>
+                <h1>MusicWeather</h1>
+                <img src="images/logo.png" alt="weather to game logo" class="logo">
+            </a>
+        </header>
+        <main role="main" class="row row--centered col col-full">
+            <div class="intro">
+                
+                <p>What Music should I listen to?</p>
+                <p>Enter your zip code/city to find a playlist</p>
+                <form class="intro__form">
+                    <input type="text" class="intro__query" placeholder="boston, ma" required>
+                    <input type="submit" class="intro__submit"> </form>
+            </div>
+            <div class="day-forecast  hidden">
+                <div class="day-forecast__results >
+
+                </div>
+            </div>
+        </main>
+    </div>
+    
+</body>
+
+</html>
