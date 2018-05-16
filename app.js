@@ -76,7 +76,24 @@ const HTMLRenderer = {showIntro: function () {
         $(".day-forecast").removeClass("hidden"); 
         $(".extended-forecast").addClass("hidden"); 
 
-        console.log(data);
+        data ? console.log(data) : this.showErr();
+        let result = data.date[0];
+
+
+        $(".day-forecast__results__result").remove();
+        $(".day-forecast__results").prepend(`
+        <div class="day-forecast__results__result">
+        <p> This playlist will set the mood for today</p>
+        <p> youtube playlist</p>
+        <p><a href="#"> Get another playlist</a></p>
+        <h3>Today's weather for ${result.name}</h3>
+        <img src="icon/${result.weather.icon}">
+        <ul>
+            <li>${result.weather.description}</li>
+            <li>${result.main.temp}°F</li>
+        </ul>
+        </div>
+        `);
     },
     
     showExtendedForecast: function () {
@@ -91,4 +108,4 @@ const HTMLRenderer = {showIntro: function () {
             alert("error");
         }
 }; 
-$(App.reset())
+$(App.reset());
