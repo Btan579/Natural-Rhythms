@@ -4,38 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="description" content="MusicWeather is a service that gives a suggest playlist based on the weather">
     <title>MusicWeather</title>
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+
 </head>
-
 <body>
-    
-        <header role="banner">
-            
-                <h2>What's the weather like outside?</h2>
-                <h1>MusicWeather</h1>
-                
-            
-        </header>
-        <main role="main">
-            <div class="intro">
-                
-                <p>What Music should I listen to?</p>
-                <p>Enter your zip code/city to find a playlist</p>
-                <form class="intro__form">
-                    <input type="text" class="intro__query" placeholder="boston, ma" required>
-                    <input type="submit" class="intro__submit"> </form>
-            </div>
-            <div class="day-forecast  hidden">
-                <div class="day-forecast__results >
 
+    <header role="banner">
+         <h2>What's the weather like outside?</h2>
+        <h1>MusicWeather</h1>
+    </header>
+
+    <main role="main">
+        <div class="intro">
+            <p>What Music should I listen to?</p>
+            <p>Enter your zip code/city to find a playlist</p>
+            <form class="intro__form">
+                <input type="text" class="intro__query" placeholder="boston, ma" required>
+                <input type="submit" class="intro__submit">
+            </form>
+        </div>
+
+        <div class="day-forecast  hidden">
+            <p> Heres what you should listen to in Boston, MA.</p>
+            <p>Get another recommeded playlist</p>
+            <div class="day-forecast__results>
+                <h3> Today's forcast in Boston,MA </h3>
+                <img src= "placeholder">
+                <ul>
+                    <li>Rain</li>
+                    <li>52° Farenheit</li>
+                </ul>
+                <p> What the weather for the next few days?</p>
+                </div>
+            </div>
+
+            <div class="extended-forecast hidden">
+                <h3>Extended forcast for Boston,MA</h3>
+                <p> Click a day for more info</p>
+                <div class="day">
+                    <h4>MON</h4>
+                    <p>April 10</p>
+                    <p>66°</p>
+                    <img src="placeholder" alt="">
+                </div>
+                <div class="day">
+                    <h4>MON</h4>
+                    <p>April 10</p>
+                    <p>66°</p>
+                    <img src="placeholder" alt="">
+                </div>
+                <div class="day">
+                    <h4>MON</h4>
+                    <p>April 10</p>
+                    <p>66°</p>
+                    <img src="placeholder" alt="">
+                </div>
+                <div class="day">
+                    <h4>MON</h4>
+                    <p>April 10</p>
+                    <p>66°</p>
+                    <img src="placeholder" alt="">
+                </div>
+                <div class="day">
+                    <h4>MON</h4>
+                    <p>April 10</p>
+                    <p>66°</p>
+                    <img src="placeholder" alt="">
                 </div>
             </div>
         </main>
-    </div>
-    
+  <footer role="contentinfo" class="hidden">°C/°F</footer>
 </body>
 
 </html>
