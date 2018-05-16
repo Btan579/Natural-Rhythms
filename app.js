@@ -1,111 +1,38 @@
 const OPENWEATHER_CURRENT_URL = "api.openweathermap.org/data/2.5/weather";
-const OPENWEATHER_FIVEDAY_URL = "api.openweathermap.org/data/2.5/forecast/daily"
+const OPENWEATHER_FIVEDAY_URL = "api.openweathermap.org/data/2.5/forecast";
 const YOUTUBEPLAYLIST_URL = "https://www.googleapis.com/youtube/v3/playlists";
 
-// openweathermap key = 68175e2f52520b2ac4d30af934a37467
+// openweathermap key = bad3b25dd3d41c8a3eaa1f49cc42d949
 // youtubeplaylist key = AIzaSyDwFW6hwpaeJu8pwYWtoQ7XFndiXYSXFRE
 
 
 const App = {
     reset: function () {
-            EventListeners.startListeners(); 
-            HTMLRenderer.showIntro(); 
+        EventListeners.startListeners();
+        HTMLRenderer.showSection(".intro");
     },
 
-    search: function(query) {
-        this.getDataFromAPI(query, HTMLRenderer.showDayForecast):
+    search: function (query) {
+        this.getDataFromAPI(query, HTMLRenderer.showDayForecast);
     },
 
-    getDataFromAPI: function(searchTerm, callback) {
+    getDataFromAPI: function (searchTerm, callback) {
         let location = searchTerm;
-        const  query = {
-            key: "68175e2f52520b2ac4d30af934a37467",
-            city: location
-         };
-         $.getJSON(OPENWEATHERMAP_URL, query, callback).fail(HTMLRenderer.showErr);
-    }        
-    };
-   
-
-
-const EventListeners = {listenersStarted: false,
-    searchQuery: "",
-    
-    startListeners: function () {
+        const query = {
+           q: location,
+            
+            appid: "bad3b25dd3d41c8a3eaa1f49cc42d949"
+        };
         
-        if (!this.listenersStarted) {
-            this.handleSubmit(); 
-            this.handleHeaderLinkClicked(); 
-            this.handleDayForecastLinkClicked(); 
-            this.listenersStarted = true; 
-        } 
-    },
+
     
-    handleHeaderLinkClicked: function () {
-        $(".header__link").click(function (event) {
-            App.reset(); 
-        }); 
-    },
-    
-    handleSubmit: function () {
-        $(".intro__form").submit(function (event) {
-            event.preventDefault(); 
-            const queryTarget = $(this).find(".intro__query"); 
-            this.searchQuery = queryTarget.val(); 
-             // App.search(searchQuery);
-            HTMLRenderer.showDayForecast(); 
-            queryTarget.val(""); 
-        }); 
-    },
-    
-    handleDayForecastLinkClicked: function() {
-        $(".day-forecast__link").click(function (event) {
-            HTMLRenderer.showExtendedForecast(); 
-        }); 
-    } 
-}; 
-
-const HTMLRenderer = {showIntro: function () {
-        $(".intro").removeClass("hidden"); 
-        $(".day-forecast").addClass("hidden"); 
-        $(".extended-forecast").addClass("hidden"); 
-    },
-    
-    showDayForecast: function(data) {
-        $(".intro").addClass("hidden"); 
-        $(".day-forecast").removeClass("hidden"); 
-        $(".extended-forecast").addClass("hidden"); 
-
-        data ? console.log(data) : this.showErr();
-        let result = data.date[0];
+    isNaN(location) ? query.city = location : query.zip = location;
 
 
-        $(".day-forecast__results__result").remove();
-        $(".day-forecast__results").prepend(`
-        <div class="day-forecast__results__result">
-        <p> This playlist will set the mood for today</p>
-        <p> youtube playlist</p>
-        <p><a href="#"> Get another playlist</a></p>
-        <h3>Today's weather for ${result.name}</h3>
-        <img src="icon/${result.weather.icon}">
-        <ul>
-            <li>${result.weather.description}</li>
-            <li>${result.main.temp}°F</li>
-        </ul>
-        </div>
-        `);
-    },
-    
-    showExtendedForecast: function () {
-            $(".intro").addClass("hidden"); 
-            $(".day-forecast").addClass("hidden"); 
-            $(".extended-forecast").removeClass("hidden"); 
+    $.getJSON(OPENWEATHER_CURRENT_URL, query, callback).fail(HTMLRenderer.showErr);
 
-            alert("showing extened forecast");
-        } ,
+    HTMLRenderer.showSection(".day-forecast");
+    }
+};
 
-        showErr: function(){
-            alert("error");
-        }
-}; 
 $(App.reset());
