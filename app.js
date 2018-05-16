@@ -1,4 +1,5 @@
-const OPENWEATHERMAP_URL = "api.openweathermap.org";
+const OPENWEATHER_CURRENT_URL = "api.openweathermap.org/data/2.5/weather";
+const OPENWEATHER_FIVEDAY_URL = "api.openweathermap.org/data/2.5/forecast/daily"
 const YOUTUBEPLAYLIST_URL = "https://www.googleapis.com/youtube/v3/playlists";
 
 // openweathermap key = 68175e2f52520b2ac4d30af934a37467
@@ -19,7 +20,6 @@ const App = {
         let location = searchTerm;
         const  query = {
             key: "68175e2f52520b2ac4d30af934a37467",
-            units: "I",
             city: location
          };
          $.getJSON(OPENWEATHERMAP_URL, query, callback).fail(HTMLRenderer.showErr);
