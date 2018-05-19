@@ -1,5 +1,5 @@
-const OPENWEATHER_CURRENT_URL = "api.openweathermap.org/data/2.5/weather";
-const OPENWEATHER_FIVEDAY_URL = "api.openweathermap.org/data/2.5/forecast";
+const OPENWEATHER_CURRENT_URL = "https://api.openweathermap.org/data/2.5/weather";
+const OPENWEATHER_FIVEDAY_URL = "https://api.openweathermap.org/data/2.5/forecast";
 const YOUTUBEPLAYLIST_URL = "https://www.googleapis.com/youtube/v3/playlists";
 
 // openweathermap key = bad3b25dd3d41c8a3eaa1f49cc42d949
@@ -7,6 +7,7 @@ const YOUTUBEPLAYLIST_URL = "https://www.googleapis.com/youtube/v3/playlists";
 
 
 const App = {
+   
     reset: function () {
         EventListeners.startListeners();
         HTMLRenderer.showSection(".intro");
@@ -31,7 +32,7 @@ const App = {
 
     $.getJSON(OPENWEATHER_CURRENT_URL, query, callback).fail(HTMLRenderer.showErr);
 
-    HTMLRenderer.showSection(".day-forecast");
+    HTMLRenderer.showSection(".day-forecast__results");
     }
 };
 

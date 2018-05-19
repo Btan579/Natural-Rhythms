@@ -25,8 +25,8 @@ const EventListeners = {
             const queryTarget = $(this).find(".intro__query");
             this.searchQuery = queryTarget.val();
             
-            App.search(this.searchQuery);
-            queryTarget.val("");
+             App.search(this.searchQuery);
+             queryTarget.val("");
         });
     },
 

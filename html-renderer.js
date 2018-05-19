@@ -1,7 +1,7 @@
 const HTMLRenderer = {
 
         showSection: function(sectionToShow) {
-            const sections = [".intro", ".day-forecast", ".extended-forecast"];
+            const sections = [".intro", ".day-forecast",".extended-forecast"];
             sections.forEach(function(item, index){
                 $(item).addClass("hidden");
             });
@@ -11,14 +11,11 @@ const HTMLRenderer = {
         
         
         showDayForecast: function (data) {
-            console.log(this);
-            data ? console.log(data) : this.showErr();
-            let result = data.data[0];
+            
+            // data ? console.log(data) : this.showErr();
+            let result = data;
 
-
-            $(".day-forecast__results__result").remove();
-            $(".day-forecast__results").prepend(`
-            <div class="day-forecast__results__result">
+            let HTMLData = `<div class="day-forecast__results__result">
                 <p> This playlist will set the mood for today</p>
                 <p> youtube playlist</p>
                 <p><a href="#"> Get another playlist</a></p>
@@ -27,9 +24,9 @@ const HTMLRenderer = {
                 <ul>
                     <li>${result.weather.description}</li>
                     <li>${result.main.temp}°F</li>
-                </ul>
-        
-        `);
+                </ul>`;
+           
+            $(".day-forecast__results").html(HTMLData);
     },
 
         showExtendedForecast: function () {
