@@ -1,7 +1,7 @@
 const HTMLRenderer = {
 
         showSection: function(sectionToShow) {
-            const sections = [".intro", ".day-forecast",".extended-forecast"];
+            const sections = [".intro", ".playlist", ".day-forecast__results",".extended-forecast"];
             sections.forEach(function(item, index){
                 $(item).addClass("hidden");
             });
@@ -14,24 +14,22 @@ const HTMLRenderer = {
             
             // data ? console.log(data) : this.showErr();
             let result = data;
-
-            let HTMLData = `<div class="day-forecast__results__result">
-                <p> This playlist will set the mood for today</p>
-                <p> youtube playlist</p>
-                <p><a href="#"> Get another playlist</a></p>
-                <h3>Today's weather for ${result.name}</h3>
-                <img src="icon/${result.weather.icon}">
+            let iconCode = result.weather[0].icon;
+            let iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
+            let HTMLData = `<h3>Today's weather for ${result.name}</h3>
+                <img src =${iconURL}>
                 <ul>
-                    <li>${result.weather.description}</li>
+                    <li> ${result.weather[0].description}</li>
                     <li>${result.main.temp}°F</li>
                 </ul>`;
            
-            $(".day-forecast__results").html(HTMLData);
+            $(".day-forecast__results").prepend(HTMLData);
     },
 
         showExtendedForecast: function () {
             $(".intro").addClass("hidden");
-            $(".day-forecast").addClass("hidden");
+            $(".day-forecast__results").addClass("hidden");
+            $(".playlist").addClass("hidden");
             $(".extended-forecast").removeClass("hidden");
         },
 
@@ -41,3 +39,10 @@ const HTMLRenderer = {
         }
 
 };
+
+
+
+//   < p > This playlist will set the mood
+//   for today < /p> <
+//       p > youtube playlist < /p> <
+//       p > < a href = "#" > Get another playlist < /a></p >

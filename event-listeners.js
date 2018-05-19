@@ -7,7 +7,7 @@ const EventListeners = {
         if (!this.listenersStarted) {
             this.handleSubmit();
             this.handleHeaderLinkClicked();
-            this.handleDayForecastLinkClicked();
+            this.handleEXTForecastLinkClicked();
             
             this.listenersStarted = true;
         }
@@ -26,11 +26,14 @@ const EventListeners = {
             this.searchQuery = queryTarget.val();
             
              App.search(this.searchQuery);
+             
              queryTarget.val("");
+             
+             
         });
     },
 
-    handleDayForecastLinkClicked: function () {
+    handleEXTForecastLinkClicked: function () {
         $(".day-forecast__link").click(function (event) {
             HTMLRenderer.showSection(".extended-forecast");
         });
