@@ -1,43 +1,63 @@
-const OPENWEATHER_CURRENT_URL = "https://api.openweathermap.org/data/2.5/weather";
-const OPENWEATHER_FIVEDAY_URL = "https://api.openweathermap.org/data/2.5/forecast";
-const YOUTUBEPLAYLIST_URL = "https://www.googleapis.com/youtube/v3/playlists";
+const WEATHERBIT_URL = "https://api.weatherbit.io/v2.0/forecast/daily";
+
+const YOUTUBEPLAYLIST_URL = "https://www.googleapis.com/youtube/v3/search";
 
 
-// openweathermap key = bad3b25dd3d41c8a3eaa1f49cc42d949
+// weatherBIT key = 0c56da0e06074738826751b7646a5ebf
 // youtubeplaylist key = AIzaSyDwFW6hwpaeJu8pwYWtoQ7XFndiXYSXFRE
 
 
 const App = {
-   
-    reset: function () {
+        dayIndex: 0,
+        queryResults:{},
+
+    reset: function() {
         EventListeners.startListeners();
         HTMLRenderer.showSection(".intro");
     },
 
-    search: function (query) {
-        this.getDataFromAPI(query, HTMLRenderer.showDayForecast);
+    searchWeather: function(query){
+        this.getWeatherDataFromAPI(query, App.saveData);
     },
 
-    getDataFromAPI: function (searchTerm, callback) {
-        let location = searchTerm;
-        const query = {
-           q: location,
-           units: "imperial",
-            
-            appid: "bad3b25dd3d41c8a3eaa1f49cc42d949"
+    getWeatherDataFromAPI: function(searchTerm, callback){
+               
+        const query ={
+            key: "0c56da0e06074738826751b7646a5ebf",
+            units: "I",
+            days: 6
         };
+
+        if (isNaN(searchTerm)){
+            query.city = searchTerm;
+        } 
         
+        else {
+            query.postal_code = searchTerm;
+            query.country = "US";
+        }
 
+        $.getJSON(WEATHERBIT_URL, query, callback).fail(HTMLRenderer.showErr);
+                
+        HTMLRenderer.showSection(".day-forecast__results");
+    },
     
-    isNaN(location) ? query.city = location : query.zip = location;
+    saveData: function(data){
+        this.queryResults = data;
+                
+        HTMLRenderer.showDayForecast(data);
+    },
 
+    getYoutubePlaylistFromAPI: function (searchTerm, callback) {
+        const query = {
+            "part": "snippet",
+            "key": "AIzaSyBkK8PEuhSfyz05gnUWhwOuE5cqWV5Oa3A",
+            "q": searchTerm,
+            type: "playist"
+        };
 
-    $.getJSON(OPENWEATHER_CURRENT_URL, query, callback).fail(HTMLRenderer.showErr);
-
-    HTMLRenderer.showSection(".day-forecast__results");
+        $.getJSON(YOUTUBEPLAYLIST_URL, query, callback);
+        HTMLRenderer.showSection(".playlist")
     }
 };
-
-   
-
 $(App.reset());

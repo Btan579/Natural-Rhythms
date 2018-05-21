@@ -9,77 +9,42 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-
-<body>
-
-    <header role="banner">
-        <a class="header__link">
-            <h2>What's the weather like outside?</h2>
-            <h1>MusicWeather</h1>
-        </a>
-    </header>
-
-    <main role="main">
-        <div class="intro">
-            <p>What Music should I listen to?</p>
-            <p>Enter your zip code/city to find a playlist</p>
-            <form class="intro__form">
-                <input type="text" class="intro__query" placeholder="boston, ma" required>
-                <input type="submit" class="intro__submit">
-            </form>
-        </div>
-
-        <div class="playlist hidden">
-            <!-- <p> Heres what you should listen to in Boston, MA.</p>
-            <p>Get another recommeded playlist</p> -->
-        </div>
-        <div class="day-forecast__results hidden">
-            
-            <p> Whats the weather for the next few days?<a href=" # " class="day-forecast__link ">Get the extended forecast</a></p>
-        </div>
-            
-        
-        <div class="extended-forecast hidden">
-                <h3>Extended forcast for Boston,MA</h3>
-                <p> Click a day for more info</p>
-                <div class="day ">
-                    <h4>MON</h4>
-                    <p>April 10</p>
-                    <p>66°</p>
-                    
+    <body>
+        <header role="banner">
+            <a class="header__link">
+                <h2>What's the weather like outside?</h2>
+                <h1>MusicWeather</h1>
+            </a>
+        </header>
+            <main role="main">
+                
+                <div class="intro">
+                    <p>What Music should I listen to?</p>
+                    <p>Enter your zip code/city to find a playlist</p>
+                    <form class="intro__form">
+                    <input type="text" class="intro__query" placeholder="boston, ma" required>
+                    <input type="submit" class="intro__submit">
+                    </form>
                 </div>
-                <div class="day ">
-                    <h4>MON</h4>
-                    <p>April 10</p>
-                    <p>66°</p>
-                    
-                </div>
-                <div class="day ">
-                    <h4>MON</h4>
-                    <p>April 10</p>
-                    <p>66°</p>
-                    
-                </div>
-                <div class="day ">
-                    <h4>MON</h4>
-                    <p>April 10</p>
-                    <p>66°</p>
-                    
-                </div>
-                <div class="day ">
-                    <h4>MON</h4>
-                    <p>April 10</p>
-                    <p>66°</p>
-                    
-                </div>
-            </div>
-        </main>
-  <footer role="contentinfo " class="hidden ">°C/°F</footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
-<script src="event-listeners.js "></script>
-<script src="html-renderer.js "></script>
-<script src="app.js "></script>
 
+                <div class="playlist hidden">
+                    <p> Heres what you should listen to in Boston, MA.</p>
+                    <p>Get another recommeded playlist</p>
+                </div>
+                
+                <div class="day-forecast__results hidden">
+                    <p>Whats the weather for the next few days?<a href="#" class="ext-forecast__link ">Get the extended forecast</a></p>
+                </div>
+                
+                <div class="extended-forecast hidden">
+
+                </div>            
+            </main>
+        <footer role="contentinfo " class="hidden ">°C/°F</footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
+    <script src="event-listeners.js "></script>
+    <script src="html-renderer.js "></script>
+    <script src="app.js "></script>
 </body>
-
 </html>
