@@ -9,12 +9,12 @@ const HTMLRenderer = {
         },
 
         showDayForecast: function (data, index) {
-            
+            console.log(data);
             let day = data.data[App.dayIndex];
             let date = new Date(day.datetime).toDateString();
-            let result = data;
+            
                 
-            let HTMLData = `<h3>Todays weather for ${result.city_name}</h3>
+            let HTMLData = `<h3>Todays weather for ${data.city_name}</h3>
             <h4>${date}</h4>
             <p> ${day.weather.description}</p>
             <img src ="icons/${day.weather.icon}.png"
@@ -23,9 +23,8 @@ const HTMLRenderer = {
              
             $(".extended-forecast").append(`
             <h3> Extended forecast
-            for ${result.city_name} </h3>
-            <p> Click a day
-            for more info </p>`);
+            for ${day.city_name} </h3>
+            <p> Click a day for more info </p>`);
               
             for (let i = 0; i <= data.data.length; i++){
                  let dateEXT = new Date(data.data[i].datetime).toDateString();

@@ -44,7 +44,8 @@ const App = {
     
     saveData: function(data){
         this.queryResults = data;
-                
+        console.log(data);
+        // dayIndex = data.data[i];
         HTMLRenderer.showDayForecast(data);
     },
 

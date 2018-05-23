@@ -37,6 +37,7 @@ const EventListeners = {
 
     handleEXTdaylinkClicked: function(){
         $(".extended-forecast").on("click", ".extended-day-link", function(event){
+            event.preventDefault();
             const parent = $(this).parent();
             const index = parent.data("index");
             console.log(index);
