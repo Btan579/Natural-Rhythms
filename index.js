@@ -18,35 +18,49 @@ const HTMLRenderer = {
         $(sectionToShow).removeClass("hidden");
     },
 
-    showDayForecast: function (data, index) {
-        console.log(data);
-        let day = data.data[App.dayIndex];
+    showDayForecast: function (savedData, data) {
+            console.log(savedData);
+        let day = savedData.data[App.dayIndex];
+        
         let date = new Date(day.datetime).toDateString();
-
-
-        let HTMLData = `<h3>Todays weather for ${data.city_name}</h3>
+        
+        let HTMLData = `<h3>Todays weather for ${savedData.city_name}</h3> 
             <h4>${date}</h4>
             <p> ${day.weather.description}</p>
             <img src ="icons/${day.weather.icon}.png"
-            alt = "${day.weather.description} icon">${day.temp}`;
+            alt = "${day.weather.description} icon">${day.temp}°`;
         $(".day-forecast__results").prepend(HTMLData);
+        
+        console.log(day);
+        console.log(savedData.city_name);
+        console.log(date);
+        console.log(day.weather.description);
+        console.log(day.weather.icon);
+        console.log(day.temp);
+
 
         $(".extended-forecast").append(`
             <h3> Extended forecast
-            for ${day.city_name} </h3>
+            for ${savedData.city_name} </h3>
             <p> Click a day for more info </p>`);
 
-        for (let i = 0; i <= data.data.length; i++) {
-            let dateEXT = new Date(data.data[i].datetime).toDateString();
-            let day = data.data[index];
+        for (let i = 0; i < savedData.data.length; i++) {
+            let extDay = savedData.data[i];
+            let thisDay = savedData.data[i].datetime;
+            let dateEXT = new Date(thisDay).toDateString();
+            
+           
             $(".extended-forecast").append(`
-                    <div class="extended-forecast-day" data-index=${i}>
-                    <a class="extended-day-link" href="#"> <h4>${dateEXT}</h4> </a>
-                    <img src="icons/${data.data[i].weather.icon}.png" alt="${data.data[i].weather.description} icon">
-                    <p>${data.data[i].weather.description}</p>
+                    <div class="extended-forecast-day">
+                    <a class="extended-day-link" href="#" data-index=${i}> <h4>${dateEXT}</h4> </a>
+                    <img src="icons/${extDay.weather.icon}.png"
+                    alt= "${extDay.weather.description} icon"> 
+                    ${extDay.temp}°<p>${extDay.weather.description}</p>
                     </div>`);
-        };
+        }
     },
+
+   
 
     // showPlaylist: function(playlists){
     //     let html = "";
@@ -100,25 +114,43 @@ const EventListeners = {
             event.preventDefault();
             const queryTarget = $(this).find(".intro__query");
             this.searchQuery = queryTarget.val();
-            EventListeners.handleEXTForecastLinkClicked(this.searchQuery);
+            
+            
             App.searchWeather(this.searchQuery);
+            EventListeners.handleEXTForecastLinkClicked(this.searchQuery);
+            
             queryTarget.val("");
+            
+           
+
         });
     },
 
     handleEXTForecastLinkClicked: function () {
         $(".ext-forecast__link").on("click", function (event) {
-            HTMLRenderer.showExtendedForecast(this.searchQuery);
+            HTMLRenderer.showExtendedForecast();
         });
     },
 
-    handleEXTdaylinkClicked: function () {
-        $(".extended-forecast").on("click", ".extended-day-link", function (event) {
+    handleEXTdaylinkClicked: function (query) {
+        $(".extended-forecast").on("click", ".extended-day-link", function () {
             event.preventDefault();
             const parent = $(this).parent();
-            const index = parent.data("index");
+            const index = $(this).data("index");
+            
             console.log(index);
-            HTMLRenderer.showDayForecast(App.queryResults, index);
+            App.dayIndex = parseInt($(this).attr("data-index"));
+            
+            $(".day-forecast__results").removeClass("hidden");
+            $(".extended-forecast").addClass("hidden");
+            $(".playlist").removeClass("hidden");
+            
+            
+            
+            
+            
+            
+            
         });
     }
 };
@@ -127,8 +159,9 @@ const EventListeners = {
 //  Application Functions
 
 const App = {
-    dayIndex: 0,
     queryResults: {},
+    dayIndex: 0,
+        
 
     reset: function () {
         EventListeners.startListeners();
@@ -142,16 +175,16 @@ const App = {
     getWeatherDataFromAPI: function (searchTerm, callback) {
 
         const query = {
-            key: "0c56da0e06074738826751b7646a5ebf",
-            units: "I",
-            days: 6
+        key: "0c56da0e06074738826751b7646a5ebf",
+        units: "I",
+        days: 6
         };
 
         if (isNaN(searchTerm)) {
-            query.city = searchTerm;
+        query.city = searchTerm;
         } else {
-            query.postal_code = searchTerm;
-            query.country = "US";
+        query.postal_code = searchTerm;
+        query.country = "US";
         }
 
         $.getJSON(WEATHERBIT_URL, query, callback).fail(HTMLRenderer.showErr);
@@ -161,10 +194,11 @@ const App = {
 
     saveData: function (data) {
         this.queryResults = data;
-        console.log(data);
-        // dayIndex = data.data[i];
+       
+        
         HTMLRenderer.showDayForecast(data);
-    },
+
+        },
 
     getYoutubePlaylistFromAPI: function (searchTerm, callback) {
         const query = {
@@ -175,7 +209,7 @@ const App = {
         };
 
         $.getJSON(YOUTUBEPLAYLIST_URL, query, callback);
-        HTMLRenderer.showSection(".playlist")
+        HTMLRenderer.showSection(".playlist");
     }
 };
 $(App.reset());
