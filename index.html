@@ -9,42 +9,45 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
-    <body>
-        <header role="banner">
-            <a class="header__link">
-                <h2>What's the weather like outside?</h2>
-                <h1>MusicWeather</h1>
-            </a>
-        </header>
-            <main role="main">
-                
-                <div class="intro">
-                    <p>What Music should I listen to?</p>
-                    <p>Enter your zip code/city to find a playlist</p>
-                    <form class="intro__form">
-                    <input type="text" class="intro__query" placeholder="boston, ma" required>
-                    <input type="submit" class="intro__submit">
-                    </form>
-                </div>
 
-                <div class="playlist hidden">
-                    <p> Heres what you should listen to in Boston, MA.</p>
-                    <p>Get another recommeded playlist</p>
-                </div>
-                
-                <div class="day-forecast__results hidden">
-                    <p class="pEXTforecast">Whats the weather for the next few days?<a href="#" class="ext-forecast__link">Get the extended forecast</a></p>
-                </div>
-                
-                <div class="extended-forecast hidden">
+<body>
+    <header role="banner">
+        <a class="header__link">
+            <h2>What's the weather like outside?</h2>
+            <h1>MusicWeather</h1>
+        </a>
+    </header>
+    <main role="main">
 
-                </div>            
-            </main>
-        <footer role="contentinfo " class="hidden ">°C/°F</footer>
+        <div class="intro">
+            <p>What Music should I listen to?</p>
+            <p>Enter your zip code/city to find a playlist</p>
+            <form class="intro__form">
+                <input type="text" class="intro__query" placeholder="boston, ma" required>
+                <input type="submit" class="intro__submit">
+            </form>
+        </div>
+        
+        <div class="day-forecast__results hidden">
+            <p class="pEXTforecast">Whats the weather for the next few days?
+                <a href="#" class="ext-forecast__link">Get the extended forecast</a>
+            </p>
+        </div>
+        
+        <div class="playlist hidden">
+            <p> Heres what you should listen to in Boston, MA.</p>
+            <div id="search-results">
+                <ul></ul>
+            </div>
+            </div>
+            
+            <div class="extended-forecast hidden">
+            </div>
+    </main>
+    
+    <footer role="contentinfo " class="hidden ">°C/°F</footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
     <script src="index.js"></script>
-    
-    
 </body>
 </html>
