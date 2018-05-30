@@ -14,13 +14,13 @@ let state = {
 // HTML Rendering
 const HTMLRenderer = {
 
-        // showSection: function (sectionToShow) {
-        //     const sections = [".intro", ".playlist", ".day-forecast__results", ".extended-forecast"];
-        //     sections.forEach(function (item, index) {
-        //         $(item).addClass("hidden");
-        //     });
-        //     $(sectionToShow).removeClass("hidden");
-        // },
+        showSection: function (sectionToShow) {
+            const sections = [".intro", ".playlist", ".day-forecast__results", ".extended-forecast"];
+            sections.forEach(function (item, index) {
+                $(item).addClass("hidden");
+            });
+            $(sectionToShow).removeClass("hidden");
+        },
 
         showDayForecast: function (savedData) {
             console.log(savedData);
@@ -70,7 +70,7 @@ const HTMLRenderer = {
         //   < p > This playlist will set the mood
         //   for today < /p> <
         //       p > youtube playlist < /p> <
-        //       p > < a href = "#" > Get another playlist < /a></p >
+        //       p > < a href = "#" > Get another playlist < /a></p>
 
         // showExtendedForecast: function () {
         //     $(".intro").addClass("hidden");
@@ -186,12 +186,12 @@ const App = {
 
     reset: function () {
         EventListeners.startListeners();
-        $(".intro").removeClass("hidden");
-        $(".day-forecast__results").addClass("hidden");
-        $(".playlist").addClass("hidden");
-        $(".extended-forecast").addClass("hidden");
+        // $(".intro").removeClass("hidden");
+        // $(".day-forecast__results").addClass("hidden");
+        // $(".playlist").addClass("hidden");
+        // $(".extended-forecast").addClass("hidden");
         
-        // HTMLRenderer.showSection(".intro");
+        HTMLRenderer.showSection(".intro");
     },
 
     searchWeather: function (query) {
