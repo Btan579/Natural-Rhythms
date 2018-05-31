@@ -4,7 +4,7 @@ const YOUTUBEPLAYLIST_URL = "https://www.googleapis.com/youtube/v3/search";
 let state = {
     queryResults: {},
     dayIndex: 0,
-    searchPlaylist: ""
+    playlists: [],
 };
 
 // API Keys
@@ -72,12 +72,6 @@ const HTMLRenderer = {
         //       p > youtube playlist < /p> <
         //       p > < a href = "#" > Get another playlist < /a></p>
 
-        // showExtendedForecast: function () {
-        //     $(".intro").addClass("hidden");
-        //     $(".day-forecast__results").addClass("hidden");
-        //     $(".extended-forecast").removeClass("hidden");
-        //     $(".playlist").addClass("hidden");
-        // },
 
         showPlaylist: function (playlists) {
             var html = "";
@@ -131,13 +125,9 @@ const EventListeners = {
             this.searchQuery = queryTarget.val();
             App.searchWeather(this.searchQuery);
             EventListeners.handleEXTForecastLinkClicked(this.searchQuery);
-            App.getYoutubePlaylistFromAPI(state.searchPlaylist);
             $(".playlist").removeClass("hidden");
             $(".day-forecast__results").removeClass("hidden");
             $(".intro").addClass("hidden");
-            // HTMLRenderer.showSection(".playlist");
-            // HTMLRenderer.showSection(".day-forecast__results");
-            // EventListeners.handleEXTdaylinkClicked();
 
             queryTarget.val("");
         });
@@ -148,12 +138,6 @@ const EventListeners = {
             $(".day-forecast__results").addClass("hidden");
             $(".extended-forecast").removeClass("hidden");
             $(".playlist").addClass("hidden");
-            // HTMLRenderer.showSection(".day-forecast__results");
-            // HTMLRenderer.showSection(".extended-forecast");
-            // HTMLRenderer.showSection(".playlist");
-            // $(".intro").addClass("hidden");
-               
-
         });
     },
 
@@ -169,11 +153,6 @@ const EventListeners = {
             $(".day-forecast__results").removeClass("hidden");
             $(".extended-forecast").addClass("hidden");
             $(".playlist").removeClass("hidden");
-            // HTMLRenderer.showSection(".day-forecast__results")
-            // HTMLRenderer.showSection(".extended-forecast")
-            // HTMLRenderer.showSection(".playlist")
-
-            
         });
     }
 };
@@ -185,18 +164,19 @@ const App = {
 
 
     reset: function () {
+        state = {
+            queryResults: {},
+            dayIndex: 0,
+            playlists: [],
+        };
         EventListeners.startListeners();
-        // $(".intro").removeClass("hidden");
-        // $(".day-forecast__results").addClass("hidden");
-        // $(".playlist").addClass("hidden");
-        // $(".extended-forecast").addClass("hidden");
-        
         HTMLRenderer.showSection(".intro");
     },
 
     searchWeather: function (query) {
         this.getWeatherDataFromAPI(query, App.saveData);
-        App.getYoutubePlaylistFromAPI(query);
+        
+        
     },
 
     getWeatherDataFromAPI: function (searchTerm, callback) {
@@ -223,27 +203,31 @@ const App = {
     saveData: function (data) {
 
         state.queryResults = data;
-
-        // App.getYoutubePlaylistFromAPI(state.queryResults);
+        for (let i = 0; i < data.data.length; i++) {
+            App.getYoutubePlaylistFromAPI(data.data[i].weather.description + " songs", App.savePlaylistData);
+        }
+        
         HTMLRenderer.showDayForecast(state.queryResults);
         console.log(state.queryResults);
     },
 
-    getYoutubePlaylistFromAPI: function (searchPlaylist, callback) {
-        // searchTerm = state.queryResults.data.data[state.dayIndex].weather.description
-        console.log(state.searchPlaylist);
+    getYoutubePlaylistFromAPI: function (searchTerm, callback) {
         
         const query = {
             part: "snippet",
             key: "AIzaSyBkK8PEuhSfyz05gnUWhwOuE5cqWV5Oa3A",
-            q: "rain",
+            q: searchTerm,
             type: "playist",
-            maxResults: 1
-        }
-
+            maxResults: 5
+        };
+        console.log(searchTerm);
         $.getJSON(YOUTUBEPLAYLIST_URL, query, callback);
-         
+    },
+
+    savePlaylistData: function (data) {
+        state.playlists.push(data.items);
+        console.log(state);
         
-    }
+    } 
 };
 $(App.reset());
