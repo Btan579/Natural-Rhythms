@@ -5,6 +5,7 @@ let state = {
     queryResults: {},
     dayIndex: 0,
     playlists: [],
+    playlistIndex: 0,
 };
 
 // API Keys
@@ -23,7 +24,7 @@ const HTMLRenderer = {
         },
 
         showDayForecast: function (savedData) {
-            console.log(savedData);
+            
             $(".day-forecast__results").find("*").not(".pEXTforecast").not(".ext-forecast__link").remove();
             let day = savedData.data[state.dayIndex];
 
@@ -57,35 +58,31 @@ const HTMLRenderer = {
             ${extDay.temp}°<p>${extDay.weather.description}</p>
             </div>`);
             }
-
+            App.randomPlaylist();
         },
 
 
 
-        // showPlaylist: function(playlists){
-        //     let html = "";
-        //     console.log(playlist.snippet.title);
-        //     $(".playlist").removeClass("hidden");
-        // },
-        //   < p > This playlist will set the mood
-        //   for today < /p> <
-        //       p > youtube playlist < /p> <
-        //       p > < a href = "#" > Get another playlist < /a></p>
-
+       
 
         showPlaylist: function (playlists) {
+            $(".playlist").empty();
+            console.log(playlists);
+            let currentPlaylist = playlists[state.dayIndex];
+            console.log(currentPlaylist);
+            $(".playlist").html(`<h3>Heres what you should listen to in ${state.queryResults.city_name}.</h3>
+            <div id ="search-results"><ul></ul></div>`)
+            
+            console.log(state.playlistIndex);
             var html = "";
-            $.each(playlists, function (index, playlist) {
-
-                // Append results li to ul
-                console.log(playlist.snippet.title);
-                console.log(playlist.snippet.thumbnails.high.url);
-
-                html = html + "<li><p>" + playlist.snippet.title +
-                    "</p><a target='_blank' href='https://www.youtube.com/watch?v=" + playlist.id.playlistId + "'><img src='" + playlist.snippet.thumbnails.high.url + "'/></a></li>";
-            });
+            // Append results li to ul
+            html = html + "<p><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
+                "</h4></p><a data-fancybox='gallery' href='https://www.youtube.com/watch?v=" + currentPlaylist[state.playlistIndex].id.videoId + "'><img src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></li>";
             $("#search-results ul").html(html);
         },
+        
+            
+        
     
 
     showErr: function () {
@@ -135,6 +132,7 @@ const EventListeners = {
 
     handleEXTForecastLinkClicked: function () {
         $(".ext-forecast__link").on("click", function (event) {
+            
             $(".day-forecast__results").addClass("hidden");
             $(".extended-forecast").removeClass("hidden");
             $(".playlist").addClass("hidden");
@@ -148,7 +146,7 @@ const EventListeners = {
             const index = $(this).data("index");
 
             state.dayIndex = parseInt(index);
-
+            HTMLRenderer.showPlaylist(state.playlists);
             HTMLRenderer.showDayForecast(state.queryResults);
             $(".day-forecast__results").removeClass("hidden");
             $(".extended-forecast").addClass("hidden");
@@ -208,7 +206,7 @@ const App = {
         }
         
         HTMLRenderer.showDayForecast(state.queryResults);
-        console.log(state.queryResults);
+        
     },
 
     getYoutubePlaylistFromAPI: function (searchTerm, callback) {
@@ -226,8 +224,13 @@ const App = {
 
     savePlaylistData: function (data) {
         state.playlists.push(data.items);
-        console.log(state);
         
-    } 
+        HTMLRenderer.showPlaylist(state.playlists);
+        
+    }, 
+    randomPlaylist: function () {
+        state.playlistIndex = Math.floor(Math.random() * 5);
+            }
+
 };
 $(App.reset());
