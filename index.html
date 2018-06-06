@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MusicWeather is a service that gives a suggest playlist based on the weather">
-    <title>MusicWeather</title>
+    <title>Natural Rhythms</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -14,13 +14,15 @@
 </head>
 
 <body>
-    <header role="banner">
+    <div class="row"></div>
+    <header role="banner" class="col col-full">
         <a class="header__link">
             <h2>What's the weather like outside?</h2>
-            <h1>MusicWeather</h1>
+            <h1>Natural Rhythms</h1>
+            <img src="icons/Natural-Rythms-Log-1.svg" id="logo" alt="natural rythms logo" class="logo">
         </a>
     </header>
-    <main role="main">
+    <main role="main" class="row row--centered col col-full">
 
         <div class="intro">
             <p>What Music should I listen to?</p>
@@ -31,20 +33,16 @@
             </form>
         </div>
         
-        <div class="day-forecast__results hidden">
-            <p class="pEXTforecast">Whats the weather for the next few days?
-                <a href="#" class="ext-forecast__link">Get the extended forecast</a>
+        <div class="day-forecast__results row row--centered hidden"aria-live="assertive">
+            <p class="pEXTforecast">Whats the weather for the next few days?<br /><a href="#" class="ext-forecast__link">Get the extended forecast</a>
             </p>
         </div>
         
-        <div class="playlist hidden">
-           
-            <div id="search-results">
-                
+        <div class="playlist hidden  row row--centered"aria-live="assertive">
+           <div id="search-results">
             </div>
             </div>
-            
-            <div class="extended-forecast hidden">
+            <div class="extended-forecast row row--centered hidden" aria-live="assertive">
             </div>
     </main>
     

@@ -6,6 +6,38 @@
     display: none;
 }
 
-header, main{
+header,
+main,
+footer {
     text-align: center;
 }
+
+h1{
+    margin-bottom: 0%;
+}
+#logo {
+    margin: 0;
+    width: 250px;
+    height: 250px;
+}
+
+
+.day-forecast__results{
+    background-color: #0099ff;
+    color: white;
+    
+}
+.row {
+   
+    max-width: 1600px;
+}
+
+
+.col {
+    text-align: center;
+}
+
+.col-full {
+    flex: 1 100%;
+}
+
