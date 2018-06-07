@@ -73,8 +73,8 @@ const HTMLRenderer = {
         console.log(state.playlistIndex);
         var html = "";
 
-        html = html + "<div class='col-6'><span><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
-            "</h4></span></div><div class='col-6'><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img class='vidThumbnail' src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></div>";
+        html = html + "<div class='col-6'><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
+            "</h4></div><div class='col-6'><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img class='vidThumbnail' src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></div>";
         $("#search-results").append(html);
     },
 
