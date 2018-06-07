@@ -59,9 +59,7 @@ const HTMLRenderer = {
 
     showPlaylist: function (playlists) {
         $("#search-results").empty();
-        console.log(playlists);
         let currentPlaylist = playlists[state.dayIndex];
-        console.log(currentPlaylist);
         $("#search-results").append(`<h3>Heres what you should listen to in ${state.queryResults.city_name}.</h3>`);
 
         var html = "";
