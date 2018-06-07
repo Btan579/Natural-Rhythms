@@ -10,34 +10,133 @@ header,
 main,
 footer {
     text-align: center;
+    margin-top: 0;
 }
 
+html{
+    background-color:#5AA2F9;
+    /* background-color: white; */
+    
+}
+header, .playlist{
+    background-color: #0066cc;
+    border-bottom-style: groove;
+    color:white;
+    font-family: 'Indie Flower',
+    cursive;
+    border-bottom-color: black;
+    padding: 20px;
+}
+h2{
+    margin-top: 0%
+}
 h1{
     margin-bottom: 0%;
+    margin-top: 20px;
+}
+h3{
+  margin-top: 0%;
+  padding-top: 20px;
+  
+}
+.playlist{
+    font-size: 20px;
 }
 #logo {
     margin: 0;
     width: 250px;
     height: 250px;
+     justify-self: center;
 }
 
+.intro{
+    background-color:#5AA2F9;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.intro p {
+font-family: 'Dosis',
+sans-serif;
+font-size: 25px;
+color:white;
+margin-top: 0%;
+}
 
-.day-forecast__results{
-    background-color: #0099ff;
-    color: white;
+form{
+    font-weight: bold;
     
 }
-.row {
-   
-    max-width: 1600px;
+
+.day-forecast__results, .extended-forecast {
+    background-color:#5AA2F9;
+    font-family: 'Dosis',
+    sans-serif;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    border-bottom-color: black;
+    border-bottom-style: groove;
 }
 
 
-.col {
-    text-align: center;
+.extended-forecast-day{
+     border: 2px solid white;
+     border-radius: 12px;
+     margin-bottom: 10px;
 }
 
-.col-full {
-    flex: 1 100%;
+
+
+
+[type="submit"] {
+    border-radius: 18px;
+    background-color: #0066cc;
+    color:white;
+    border: 1px solid #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+    padding: .5em 1em;
+    transition: all 0.3s ease;
 }
+
+[type="text"] {
+    padding: .5em;
+    background: transparent;
+    border: 1px solid white;
+    background-color: rgba(250, 235, 215, 0.836);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+[type="text"]:focus,
+[type="text"]:hover,
+[type="submit"]:hover,
+[type="submit"]:focus {
+    background-color: #C0B9C2;
+}
+
+[type="submit"]:hover,
+[type="submit"]:focus {
+    color:antiquewhite;
+    transform: scale(0.9);
+}
+a {
+    cursor: pointer;
+    text-decoration: underline;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: rgb(138, 145, 155);
+}
+
+header a {
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #C0B9C2;
+}
+
 

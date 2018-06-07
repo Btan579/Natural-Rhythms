@@ -3,52 +3,61 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MusicWeather is a service that gives a suggest playlist based on the weather">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MusicWeather is a service that gives a suggest playlist based on the weather" />
     <title>Natural Rhythms</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="grid.css" />
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Indie+Flower" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 </head>
 
 <body>
-    <div class="row"></div>
-    <header role="banner" class="col col-full">
-        <a class="header__link">
-            <h2>What's the weather like outside?</h2>
-            <h1>Natural Rhythms</h1>
-            <img src="icons/Natural-Rythms-Log-1.svg" id="logo" alt="natural rythms logo" class="logo">
-        </a>
-    </header>
-    <main role="main" class="row row--centered col col-full">
+    <div class="row">
+        <header role="banner" class="col col-full">
+            <a class="header__link">
+                <h2>What's the weather like outside?</h2>
+                <h1>Natural Rhythms</h1>
+                <img src="icons/Natural-Rythms-Log-1.svg" id="logo" alt="natural rythms logo" class="logo">
+            </a>
+        </header>
+    </div>
 
-        <div class="intro">
-            <p>What Music should I listen to?</p>
-            <p>Enter your zip code/city to find a playlist</p>
-            <form class="intro__form">
-                <input type="text" class="intro__query" placeholder="boston, ma" required>
-                <input type="submit" class="intro__submit">
-            </form>
-        </div>
-        
-        <div class="day-forecast__results row row--centered hidden"aria-live="assertive">
-            <p class="pEXTforecast">Whats the weather for the next few days?<br /><a href="#" class="ext-forecast__link">Get the extended forecast</a>
-            </p>
-        </div>
-        
-        <div class="playlist hidden  row row--centered"aria-live="assertive">
-           <div id="search-results">
+    <main role="main">
+
+        <div class="row">
+            <div class="intro">
+                <p>What music should I listen to?</p>
+                <p>Enter your zip code/city to find a playlist</p>
+                <form class="intro__form">
+                    <input type="text" class="intro__query" placeholder="boston, ma" required>
+                    <input type="submit" class="intro__submit">
+                </form>
             </div>
+            <div class="row">
+                <div class="day-forecast__results hidden" aria-live="assertive">
+                    <p class="pEXTforecast">Whats the weather for the next few days?
+                        <br />
+                        <a href="#" class="ext-forecast__link">Get the extended forecast</a>
+                    </p>
+                </div>
             </div>
-            <div class="extended-forecast row row--centered hidden" aria-live="assertive">
+            <div class="row">
+                <div class="playlist col-12 hidden" aria-live="assertive">
+                    <div id="search-results">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="extended-forecast  hidden" aria-live="assertive">
+                </div>
             </div>
     </main>
-    
     <footer role="contentinfo " class="hidden ">°C/°F</footer>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js "></script>
     <script src="index.js"></script>
 </body>
+
 </html>

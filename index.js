@@ -30,7 +30,7 @@ const HTMLRenderer = {
 
             let date = new Date(day.datetime).toDateString();
 
-            let HTMLData = `<h3>Todays weather for ${savedData.city_name}</h3> 
+            let HTMLData = `<h3>Today's weather for ${savedData.city_name}</h3> 
             <h4>${date}</h4>
             <p>${day.weather.description}</p>
             <img src="icons/${day.weather.icon}.png"
@@ -50,11 +50,14 @@ const HTMLRenderer = {
 
 
                 $(".extended-forecast").append(`
-            <div class ="extended-forecast-day row--centered">
-            <a class="extended-day-link" href="#" data-index=${i}> <h4>${dateEXT}</h4> </a>
+            <div class = "row">
+            <div class ="extended-forecast-day">
+            <a class="extended-day-link" href="#" data-index=${i}><h4>${dateEXT}</h4></a>
+            <p>${extDay.weather.description}</p>
             <img src="icons/${extDay.weather.icon}.png"
-            alt= "${extDay.weather.description} icon"> 
-            ${extDay.temp}°<p>${extDay.weather.description}</p>
+            alt = "${extDay.weather.description} icon"><br>
+            ${extDay.temp}°
+            </div>
             </div>`);
             }
             App.randomPlaylist();
@@ -73,9 +76,9 @@ const HTMLRenderer = {
             
             console.log(state.playlistIndex);
             var html = "";
-            // Append results li to ul
-            html = html + "<p><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
-                "</h4></p><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></li>";
+          
+            html = html + "<div class='col-6'><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
+                "</h4></div><div class='col-6'><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img class='vidThumbnail' src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></div>";
             $("#search-results").append(html);
         },
         
