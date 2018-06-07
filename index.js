@@ -15,41 +15,41 @@ let state = {
 // HTML Rendering
 const HTMLRenderer = {
 
-        showSection: function (sectionToShow) {
-            const sections = [".intro", ".playlist", ".day-forecast__results", ".extended-forecast"];
-            sections.forEach(function (item, index) {
-                $(item).addClass("hidden");
-            });
-            $(sectionToShow).removeClass("hidden");
-        },
+    showSection: function (sectionToShow) {
+        const sections = [".intro", ".playlist", ".day-forecast__results", ".extended-forecast"];
+        sections.forEach(function (item, index) {
+            $(item).addClass("hidden");
+        });
+        $(sectionToShow).removeClass("hidden");
+    },
 
-        showDayForecast: function (savedData) {
-            
-            $(".day-forecast__results").find("*").not(".pEXTforecast").not(".ext-forecast__link").not("br").remove();
-            let day = savedData.data[state.dayIndex];
+    showDayForecast: function (savedData) {
 
-            let date = new Date(day.datetime).toDateString();
+        $(".day-forecast__results").find("*").not(".pEXTforecast").not(".ext-forecast__link").not("br").remove();
+        let day = savedData.data[state.dayIndex];
 
-            let HTMLData = `<h3>Today's weather for ${savedData.city_name}</h3> 
+        let date = new Date(day.datetime).toDateString();
+
+        let HTMLData = `<h3>Today's weather for ${savedData.city_name}</h3> 
             <h4>${date}</h4>
             <p>${day.weather.description}</p>
             <img src="icons/${day.weather.icon}.png"
             alt ="${day.weather.description}icon"><br><span>${day.temp}°</span>`;
-            $(".day-forecast__results").prepend(HTMLData);
+        $(".day-forecast__results").prepend(HTMLData);
 
 
-            $(".extended-forecast").empty();
-            $(".extended-forecast").append(`
+        $(".extended-forecast").empty();
+        $(".extended-forecast").append(`
             <h3> Extended forecast for ${savedData.city_name}</h3>
             <p>Click a day for more info</p>`);
 
-            for (let i = 0; i < savedData.data.length; i++) {
-                let extDay = savedData.data[i];
-                let thisDay = savedData.data[i].datetime;
-                let dateEXT = new Date(thisDay).toDateString();
+        for (let i = 0; i < savedData.data.length; i++) {
+            let extDay = savedData.data[i];
+            let thisDay = savedData.data[i].datetime;
+            let dateEXT = new Date(thisDay).toDateString();
 
 
-                $(".extended-forecast").append(`
+            $(".extended-forecast").append(`
             <div class = "row">
             <div class ="extended-forecast-day">
             <a class="extended-day-link" href="#" data-index=${i}><h4>${dateEXT}</h4></a>
@@ -59,32 +59,28 @@ const HTMLRenderer = {
             ${extDay.temp}°
             </div>
             </div>`);
-            }
-            App.randomPlaylist();
-        },
+        }
+        App.randomPlaylist();
+    },
+
+    showPlaylist: function (playlists) {
+        $("#search-results").empty();
+        console.log(playlists);
+        let currentPlaylist = playlists[state.dayIndex];
+        console.log(currentPlaylist);
+        $("#search-results").append(`<h3>Heres what you should listen to in ${state.queryResults.city_name}.</h3>`);
+
+        console.log(state.playlistIndex);
+        var html = "";
+
+        html = html + "<div class='col-6'><span><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
+            "</h4></span></div><div class='col-6'><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img class='vidThumbnail' src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></div>";
+        $("#search-results").append(html);
+    },
 
 
 
-       
 
-        showPlaylist: function (playlists) {
-            $("#search-results").empty();
-            console.log(playlists);
-            let currentPlaylist = playlists[state.dayIndex];
-            console.log(currentPlaylist);
-            $("#search-results").append(`<h3>Heres what you should listen to in ${state.queryResults.city_name}.</h3>`);
-            
-            console.log(state.playlistIndex);
-            var html = "";
-          
-            html = html + "<div class='col-6'><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
-                "</h4></div><div class='col-6'><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img class='vidThumbnail' src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></div>";
-            $("#search-results").append(html);
-        },
-        
-            
-        
-    
 
     showErr: function () {
         alert("error");
@@ -133,7 +129,7 @@ const EventListeners = {
 
     handleEXTForecastLinkClicked: function () {
         $(".ext-forecast__link").on("click", function (event) {
-            
+
             $(".day-forecast__results").addClass("hidden");
             $(".extended-forecast").removeClass("hidden");
             $(".playlist").addClass("hidden");
@@ -174,8 +170,8 @@ const App = {
 
     searchWeather: function (query) {
         this.getWeatherDataFromAPI(query, App.saveData);
-        
-        
+
+
     },
 
     getWeatherDataFromAPI: function (searchTerm, callback) {
@@ -195,7 +191,7 @@ const App = {
 
         $.getJSON(WEATHERBIT_URL, query, callback).fail(HTMLRenderer.showErr);
 
-        
+
 
     },
 
@@ -205,13 +201,13 @@ const App = {
         for (let i = 0; i < data.data.length; i++) {
             App.getYoutubePlaylistFromAPI(data.data[i].weather.description + " songs", App.savePlaylistData);
         }
-        
+
         HTMLRenderer.showDayForecast(state.queryResults);
-        
+
     },
 
     getYoutubePlaylistFromAPI: function (searchTerm, callback) {
-        
+
         const query = {
             part: "snippet",
             key: "AIzaSyBkK8PEuhSfyz05gnUWhwOuE5cqWV5Oa3A",
@@ -225,13 +221,13 @@ const App = {
 
     savePlaylistData: function (data) {
         state.playlists.push(data.items);
-        
+
         HTMLRenderer.showPlaylist(state.playlists);
-        
-    }, 
+
+    },
     randomPlaylist: function () {
         state.playlistIndex = Math.floor(Math.random() * 5);
-            }
+    }
 
 };
 $(App.reset());

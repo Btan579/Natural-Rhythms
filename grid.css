@@ -1,13 +1,11 @@
 * {
     box-sizing: border-box;
 }
+
 .row {
     max-width: 1000px;
-
     margin: 0 auto;
 }
-
-
 
 /* Clearfix */
 
@@ -64,7 +62,6 @@
     .col-12 {
         width: 100%;
     }
-
     .vidThumbnail {
         width: 300px;
     }

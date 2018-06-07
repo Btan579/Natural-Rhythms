@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
@@ -13,64 +13,67 @@ footer {
     margin-top: 0;
 }
 
-html{
-    background-color:#5AA2F9;
+html {
+    background-color: #5AA2F9;
     /* background-color: white; */
-    
 }
-header, .playlist{
+
+header,
+.playlist {
     background-color: #0066cc;
     border-bottom-style: groove;
-    color:white;
-    font-family: 'Indie Flower',
-    cursive;
+    color: white;
+    font-family: 'Indie Flower', cursive;
     border-bottom-color: black;
     padding: 20px;
 }
-h2{
+
+h2 {
     margin-top: 0%
 }
-h1{
+
+h1 {
     margin-bottom: 0%;
     margin-top: 20px;
 }
-h3{
-  margin-top: 0%;
-  padding-top: 20px;
-  
+
+h3 {
+    margin-top: 0%;
+    padding-top: 20px;
 }
-.playlist{
+
+.playlist {
     font-size: 20px;
 }
+
 #logo {
     margin: 0;
     width: 250px;
     height: 250px;
-     justify-self: center;
+    justify-self: center;
 }
 
-.intro{
-    background-color:#5AA2F9;
+.intro {
+    background-color: #5AA2F9;
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 .intro p {
-font-family: 'Dosis',
-sans-serif;
-font-size: 25px;
-color:white;
-margin-top: 0%;
+    font-family: 'Dosis', sans-serif;
+    font-size: 25px;
+    color: white;
+    margin-top: 0%;
 }
 
-form{
+form {
     font-weight: bold;
-    
 }
 
-.day-forecast__results, .extended-forecast {
-    background-color:#5AA2F9;
-    font-family: 'Dosis',
-    sans-serif;
+.day-forecast__results,
+.extended-forecast {
+    background-color: #5AA2F9;
+    font-family: 'Dosis', sans-serif;
     font-size: 20px;
     color: white;
     padding: 10px;
@@ -78,20 +81,16 @@ form{
     border-bottom-style: groove;
 }
 
-
-.extended-forecast-day{
-     border: 2px solid white;
-     border-radius: 12px;
-     margin-bottom: 10px;
+.extended-forecast-day {
+    border: 2px solid white;
+    border-radius: 12px;
+    margin-bottom: 10px;
 }
-
-
-
 
 [type="submit"] {
     border-radius: 18px;
     background-color: #0066cc;
-    color:white;
+    color: white;
     border: 1px solid #0066cc;
     text-decoration: none;
     font-weight: bold;
@@ -118,9 +117,10 @@ form{
 
 [type="submit"]:hover,
 [type="submit"]:focus {
-    color:antiquewhite;
+    color: antiquewhite;
     transform: scale(0.9);
 }
+
 a {
     cursor: pointer;
     text-decoration: underline;
@@ -138,5 +138,3 @@ header a {
 header a:hover {
     color: #C0B9C2;
 }
-
-
