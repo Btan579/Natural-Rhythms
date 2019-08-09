@@ -87,7 +87,6 @@ form {
     border: 2px solid white;
     border-radius: 12px;
     margin-bottom: 10px;
-    padding: 10px;
 }
 
 [type="submit"] {
@@ -151,53 +150,7 @@ header a:hover {
     }
 
     .intro__submit {
-        margin-top: 10px;
-    }
-
-    .vidThumbnail {
-        width: 90%;
-    }
-
-    .extended-forecast-day, h4 {
-        margin: 10px;
-    }
-     .col-6 {
-        width: 100%;
-    }
-}
-
-
-@media screen and (max-width: 375px) {
- 
-    html {
-        width: 100%;
-    }
-
-    header {
-        width: 100%;
-    }
-
-    .intro__submit {
-        margin-top: 10px;
-    }
-
-    .vidThumbnail {
-        width: 90%;
-    }
-    .col-6 {
-        width: 100%;
-    }
-    .extended-forecast-day, h4 {
-        text-align: center;
-    }
-}
-
-@media screen and (max-width: 768px) {
-
-  
-    .col-6 {
-        width: 100%;
+        padding-top: 10px;
     }
 
 }
-

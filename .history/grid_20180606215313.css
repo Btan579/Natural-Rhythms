@@ -56,7 +56,7 @@
     }
     /* 6 columns 6/12 in % */
     .col-6 {
-        width: 100%;
+        width: 50%;
     }
     /* 12 columns, 12/12 */
     .col-12 {

@@ -161,9 +161,6 @@ header a:hover {
     .extended-forecast-day, h4 {
         margin: 10px;
     }
-     .col-6 {
-        width: 100%;
-    }
 }
 
 
@@ -184,20 +181,9 @@ header a:hover {
     .vidThumbnail {
         width: 90%;
     }
-    .col-6 {
-        width: 100%;
-    }
-    .extended-forecast-day, h4 {
-        text-align: center;
+
+    .extended-forecast-day,
+    h4 {
+        margin: 10px;
     }
 }
-
-@media screen and (max-width: 768px) {
-
-  
-    .col-6 {
-        width: 100%;
-    }
-
-}
-

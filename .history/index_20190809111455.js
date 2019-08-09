@@ -53,7 +53,7 @@ const HTMLRenderer = {
             <a class="extended-day-link" href="#" data-index=${i}><h4>${dateEXT}</h4></a>
             <p>${extDay.weather.description}</p>
             <img src="icons/${extDay.weather.icon}.png"
-            alt = "${extDay.weather.description} icon"><br class="ext-temp">
+            alt = "${extDay.weather.description} icon"><br class="ext-display-temp">
             ${extDay.temp}°
             </div>
             </div>`);
@@ -69,7 +69,7 @@ const HTMLRenderer = {
 
         var html = "";
         html = html + "<div class='col-6'><h4>" + currentPlaylist[state.playlistIndex].snippet.title +
-            "</h4></div><div class='vid-box'><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img class='vidThumbnail' src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></div>";
+            "</h4></div><div class='col-6'><a target='_blank' href='https://www.youtube.com/playlist?list=" + currentPlaylist[state.playlistIndex].id.playlistId + "'><img class='vidThumbnail' src='" + currentPlaylist[state.playlistIndex].snippet.thumbnails.high.url + "'/></a></div>";
         $("#search-results").append(html);
     },
     // Displays and error alert  if API request fails.

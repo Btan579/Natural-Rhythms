@@ -162,8 +162,8 @@ header a:hover {
         margin: 10px;
     }
      .col-6 {
-        width: 100%;
-    }
+         width: 100%;
+     }
 }
 
 
@@ -191,13 +191,3 @@ header a:hover {
         text-align: center;
     }
 }
-
-@media screen and (max-width: 768px) {
-
-  
-    .col-6 {
-        width: 100%;
-    }
-
-}
-

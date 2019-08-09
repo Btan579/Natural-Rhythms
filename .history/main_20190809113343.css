@@ -161,43 +161,32 @@ header a:hover {
     .extended-forecast-day, h4 {
         margin: 10px;
     }
-     .col-6 {
-        width: 100%;
-    }
 }
 
 
 @media screen and (max-width: 375px) {
- 
-    html {
+    /* html {
         width: 100%;
     }
-
+    
     header {
         width: 100%;
     }
 
     .intro__submit {
         margin-top: 10px;
+    } */
+    html {
+        width: 100%;
     }
-
     .vidThumbnail {
         width: 90%;
+        display: block;
+       
     }
-    .col-6 {
-        width: 100%;
-    }
-    .extended-forecast-day, h4 {
-        text-align: center;
-    }
+
+    /* .extended-forecast-day,
+    h4 {
+        margin: 10px;
+    } */
 }
-
-@media screen and (max-width: 768px) {
-
-  
-    .col-6 {
-        width: 100%;
-    }
-
-}
-
